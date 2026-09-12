@@ -1,0 +1,42 @@
+@page
+@model BoutiqueBeads.Areas.Admin.Pages.Products.CreateModel
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h1>Add Product</h1>
+
+<form method="post" enctype="multipart/form-data" style="max-width:560px;">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <label>Name</label>
+    <input asp-for="Input.Name" class="form-control" />
+
+    <label>Category</label>
+    <select asp-for="Input.CategoryId" asp-items="Model.CategoryOptions" class="form-control">
+        <option value="">-- Select --</option>
+    </select>
+
+    <label>Description</label>
+    <textarea asp-for="Input.Description" class="form-control" rows="4"></textarea>
+
+    <label>Price (USD)</label>
+    <input asp-for="Input.Price" class="form-control" type="number" step="0.01" />
+
+    <label>Stock Quantity</label>
+    <input asp-for="Input.StockQuantity" class="form-control" type="number" />
+
+    <label>Quick Order URL (Stripe / PayPal checkout link)</label>
+    <input asp-for="Input.QuickOrderUrl" class="form-control" placeholder="https://buy.stripe.com/..." />
+
+    <label><input asp-for="Input.IsFeatured" type="checkbox" /> Feature on homepage</label>
+
+    <hr />
+    <label>Product Photos (JPG, PNG, WEBP — you can select multiple)</label>
+    <input asp-for="Input.ImageFiles" type="file" class="form-control" multiple accept="image/*" />
+
+    <label>Product Video URL (YouTube, Vimeo — optional)</label>
+    <input asp-for="Input.VideoUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=..." />
+
+    <button type="submit" class="btn btn-primary" style="margin-top:16px;">Save Product</button>
+</form>

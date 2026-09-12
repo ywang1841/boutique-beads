@@ -1,0 +1,42 @@
+@page "{id:int}"
+@model BoutiqueBeads.Pages.Products.DetailsModel
+@{
+    ViewData["Title"] = Model.Product?.Name ?? "Product";
+}
+
+@if (Model.Product is null)
+{
+    <p>Product not found.</p>
+}
+else
+{
+    <div class="product-detail">
+        <div class="gallery">
+            @foreach (var img in Model.Product.Images.OrderBy(i => i.DisplayOrder))
+            {
+                <img src="@img.BlobUrl" alt="@(img.AltText ?? Model.Product.Name)" />
+            }
+        </div>
+
+        <div class="details">
+            <h1>@Model.Product.Name</h1>
+            <p class="price">$@Model.Product.Price.ToString("0.00")</p>
+            <p>@Model.Product.Description</p>
+
+            @if (!string.IsNullOrEmpty(Model.Product.QuickOrderUrl))
+            {
+                <a class="btn btn-primary" href="@Model.Product.QuickOrderUrl" target="_blank" rel="noopener">Quick Order</a>
+            }
+
+            @foreach (var video in Model.Product.Videos.OrderBy(v => v.DisplayOrder))
+            {
+                var embedUrl = BoutiqueBeads.Services.YouTubeHelper.GetEmbedUrl(video.VideoUrl) ?? video.VideoUrl;
+                <div class="video-embed">
+                    <iframe class="tutorial-video" src="@embedUrl" title="@(video.Title ?? Model.Product.Name)"
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            }
+        </div>
+    </div>
+}

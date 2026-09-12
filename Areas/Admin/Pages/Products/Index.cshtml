@@ -1,0 +1,28 @@
+@page
+@model BoutiqueBeads.Areas.Admin.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+<a class="btn btn-primary" href="/Admin/Products/Create">+ Add Product</a>
+
+<table class="admin-table" style="margin-top:20px;">
+    <thead>
+        <tr><th>Name</th><th>Price</th><th>Active</th><th>Images</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Products)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>$@p.Price.ToString("0.00")</td>
+                <td>@(p.IsActive ? "Yes" : "No")</td>
+                <td>@p.Images.Count</td>
+                <td>
+                    <a href="/Admin/Products/Edit/@p.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

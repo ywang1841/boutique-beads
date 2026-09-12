@@ -1,0 +1,47 @@
+@page "{id:int}"
+@model BoutiqueBeads.Pages.Tutorials.DetailsModel
+@{
+    ViewData["Title"] = Model.Tutorial?.Title ?? "Tutorial";
+}
+
+@if (Model.Tutorial is null)
+{
+    <p>Tutorial not found.</p>
+}
+else
+{
+    <h1>@Model.Tutorial.Title</h1>
+
+    <div class="video-embed">
+        <iframe class="tutorial-video" src="@Model.EmbedUrl" title="@Model.Tutorial.Title"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+
+    <p>@Model.Tutorial.Description</p>
+
+    <div class="related-products">
+        <h2>Get the Materials</h2>
+        <div class="product-grid">
+            @foreach (var link in Model.Tutorial.RelatedProducts.OrderBy(r => r.DisplayOrder))
+            {
+                var product = link.Product!;
+                <div class="product-card">
+                    <img src="@(product.Images.FirstOrDefault()?.BlobUrl ?? "/img/placeholder.jpg")" alt="@product.Name" />
+                    <div class="card-body">
+                        <h3>@product.Name</h3>
+                        <p class="price">$@product.Price.ToString("0.00")</p>
+                        @if (!string.IsNullOrEmpty(product.QuickOrderUrl))
+                        {
+                            <a class="btn btn-primary" href="@product.QuickOrderUrl" target="_blank" rel="noopener">Quick Order</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline" href="/Products/Details/@product.Id">View Product</a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

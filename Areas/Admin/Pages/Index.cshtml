@@ -1,0 +1,11 @@
+@page
+@model BoutiqueBeads.Areas.Admin.Pages.IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+<p>@Model.ProductCount products &middot; @Model.TutorialCount tutorials published</p>
+
+<a class="btn btn-primary" href="/Admin/Products/Create">+ Add Product</a>
+<a class="btn btn-outline" href="/Admin/Tutorials">Manage Tutorials</a>

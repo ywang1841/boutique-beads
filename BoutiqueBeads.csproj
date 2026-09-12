@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>boutique-beads-secrets</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Database + Identity -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <!-- Temporary: lets the app run with dummy seeded data, no real SQL Server needed.
+         Remove this + SeedData.cs and switch Program.cs back to UseSqlServer when ready. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
+
+    <!-- Azure Blob Storage for product images + tutorial/product videos -->
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.21.2" />
+  </ItemGroup>
+
+</Project>

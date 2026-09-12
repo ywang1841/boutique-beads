@@ -1,0 +1,25 @@
+@page
+@model BoutiqueBeads.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<h1>Shop All Pieces</h1>
+
+<div class="product-grid">
+    @foreach (var product in Model.Products)
+    {
+        <div class="product-card">
+            <img src="@(product.Images.FirstOrDefault()?.BlobUrl ?? "/img/placeholder.jpg")" alt="@product.Name" />
+            <div class="card-body">
+                <h3>@product.Name</h3>
+                <p class="price">$@product.Price.ToString("0.00")</p>
+                <a class="btn btn-primary" href="/Products/Details/@product.Id">View</a>
+                @if (!string.IsNullOrEmpty(product.QuickOrderUrl))
+                {
+                    <a class="btn btn-outline" href="@product.QuickOrderUrl" target="_blank" rel="noopener">Quick Order</a>
+                }
+            </div>
+        </div>
+    }
+</div>

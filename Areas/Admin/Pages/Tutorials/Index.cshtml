@@ -1,0 +1,22 @@
+@page
+@model BoutiqueBeads.Areas.Admin.Pages.Tutorials.IndexModel
+@{
+    ViewData["Title"] = "Tutorials";
+}
+
+<h1>Tutorials</h1>
+<a class="btn btn-primary" href="/Admin/Tutorials/Create">+ Add Tutorial</a>
+
+<table class="admin-table" style="margin-top:20px;">
+    <thead><tr><th>Title</th><th>Published</th><th>Related Products</th></tr></thead>
+    <tbody>
+        @foreach (var t in Model.Tutorials)
+        {
+            <tr>
+                <td>@t.Title</td>
+                <td>@(t.IsPublished ? "Yes" : "No")</td>
+                <td>@t.RelatedProducts.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>

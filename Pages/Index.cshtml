@@ -1,0 +1,27 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <h1>Handmade Bead Jewelry</h1>
+    <p>Every piece strung and finished by hand. Watch how it's made, then shop the pieces you love.</p>
+    <a class="btn btn-primary" href="/Products">Shop the Collection</a>
+    <a class="btn btn-outline" href="/Tutorials">Watch Tutorials</a>
+</section>
+
+<h2>Featured Pieces</h2>
+<div class="product-grid">
+    @foreach (var product in Model.FeaturedProducts)
+    {
+        <div class="product-card">
+            <img src="@(product.Images.FirstOrDefault()?.BlobUrl ?? "/img/placeholder.jpg")" alt="@product.Name" />
+            <div class="card-body">
+                <h3>@product.Name</h3>
+                <p class="price">$@product.Price.ToString("0.00")</p>
+                <a class="btn btn-primary" href="/Products/Details/@product.Id">View</a>
+            </div>
+        </div>
+    }
+</div>

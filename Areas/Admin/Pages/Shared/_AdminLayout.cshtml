@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="admin-shell">
+        <aside class="admin-sidebar">
+            <h3 style="color:#fff;">Boutique Beads</h3>
+            <nav>
+                <a href="/Admin">Dashboard</a>
+                <a href="/Admin/Products">Products</a>
+                <a href="/Admin/Tutorials">Tutorials</a>
+                <a href="/">View Site</a>
+            </nav>
+        </aside>
+        <div class="admin-content">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

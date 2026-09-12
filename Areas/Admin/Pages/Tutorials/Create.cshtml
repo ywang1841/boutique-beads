@@ -1,0 +1,31 @@
+@page
+@model BoutiqueBeads.Areas.Admin.Pages.Tutorials.CreateModel
+@{
+    ViewData["Title"] = "Add Tutorial";
+}
+
+<h1>Add Tutorial</h1>
+
+<form method="post" enctype="multipart/form-data" style="max-width:560px;">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <label>Title</label>
+    <input asp-for="Input.Title" class="form-control" />
+
+    <label>Description</label>
+    <textarea asp-for="Input.Description" class="form-control" rows="4"></textarea>
+
+    <label>Tutorial Video URL (YouTube, Vimeo, etc.)</label>
+    <input asp-for="Input.VideoUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=..." />
+    <small>Leave the thumbnail blank to auto-use YouTube's thumbnail for this video.</small>
+
+    <label>Thumbnail URL (optional override)</label>
+    <input asp-for="Input.ThumbnailUrl" class="form-control" placeholder="https://..." />
+
+    <label style="margin-top:12px;display:block;">Related Products (shown as "Quick Order" under the video)</label>
+    <select asp-for="Input.SelectedProductIds" asp-items="Model.ProductOptions" class="form-control" multiple size="6"></select>
+
+    <label style="margin-top:12px;"><input asp-for="Input.IsPublished" type="checkbox" /> Publish immediately</label>
+
+    <button type="submit" class="btn btn-primary" style="margin-top:16px;">Save Tutorial</button>
+</form>

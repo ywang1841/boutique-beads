@@ -1,0 +1,21 @@
+@page
+@model BoutiqueBeads.Pages.Tutorials.IndexModel
+@{
+    ViewData["Title"] = "Tutorials";
+}
+
+<h1>How We Make It</h1>
+<p>Step-by-step videos showing our beading techniques — with the exact materials linked below each one.</p>
+
+<div class="product-grid">
+    @foreach (var t in Model.Tutorials)
+    {
+        <div class="product-card">
+            <img src="@(t.ThumbnailUrl ?? BoutiqueBeads.Services.YouTubeHelper.GetThumbnailUrl(t.VideoUrl) ?? "/img/placeholder.jpg")" alt="@t.Title" />
+            <div class="card-body">
+                <h3>@t.Title</h3>
+                <a class="btn btn-primary" href="/Tutorials/Details/@t.Id">Watch</a>
+            </div>
+        </div>
+    }
+</div>
